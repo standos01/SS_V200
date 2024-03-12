@@ -1,5 +1,5 @@
 import './style.css';
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import Biceps from "./svaly/Biceps";
 import Triceps from "./svaly/Triceps";
@@ -36,6 +36,13 @@ const skupiny = [
 ];
 
 export default function Clovek() {
+
+   const [seznamCviku, nastavSeznamCviku] = useState([]);
+
+   useEffect(() => {
+      localStorage.setItem('seznamCviku', seznamCviku);
+  }, [seznamCviku]);
+
 
 
    const [barvy, nastavBarvy] = useState({
@@ -2538,7 +2545,16 @@ export default function Clovek() {
             
          </svg>
 
-         {skupiny.map((skupina) => zobrazeni[skupina.nazev] && <skupina.komponenta key={skupina.nazev} />)}
+         {skupiny.map((skupina) => zobrazeni[skupina.nazev] && <skupina.komponenta key={skupina.nazev} seznamCviku={seznamCviku} nastavSeznamCviku={nastavSeznamCviku}/>)}
+      
+         <div>
+<h2>Seznam uloyenych cviku na biceps:</h2>
+      {seznamCviku.map((exercise) => (
+          exercise.name
+        ))}
+      </div>
+      
+      
       </div>
    )
 }

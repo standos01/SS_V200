@@ -32,7 +32,6 @@ export default function Chest() {
             {muscleData.map((exercise) => (
               <div key={exercise.id}>
                 <h3>{exercise.name}</h3>
-                <p>Typ: {exercise.tipe}</p>
                 <p>Equipment: {exercise.equipment}</p>
                 <p>Obtiznost: {exercise.difficulty}</p>
                 <p>Instrukce: {exercise.instructions}</p>

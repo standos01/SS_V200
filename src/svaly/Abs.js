@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 
 
 
-export default function Abs() {
+export default function Abs(props) {
     const [muscleData, nastavMuscleData] = useState([]);
 
     useEffect(() => {
@@ -32,6 +32,9 @@ export default function Abs() {
             {muscleData.map((exercise) => (
               <div key={exercise.id}>
                 <h3>{exercise.name}</h3>
+                <button onClick={() => {
+              props.nastavSeznamCviku([...props.seznamCviku, exercise])
+            }}/>
                 <p>Typ: {exercise.tipe}</p>
                 <p>Equipment: {exercise.equipment}</p>
                 <p>Obtiznost: {exercise.difficulty}</p>
